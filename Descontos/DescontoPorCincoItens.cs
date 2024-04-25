@@ -1,13 +1,10 @@
-﻿using CursoDesignPatterns.Interfaces;
-using CursoDesignPatterns.Models;
+﻿using CursoDesignPatterns.Models;
 
 namespace CursoDesignPatterns.Descontos;
 
-public class DescontoPorCincoItens : IDesconto
+public class DescontoPorCincoItens : Desconto
 {
-    public IDesconto? ProximoDesconto { get; set; }
-
-    public double Desconta(Orcamento orcamento)
+    public override double Desconta(Orcamento orcamento)
     {
         if (orcamento.Itens.Count >= 5) return orcamento.ValorTotalItens * 0.05;
 

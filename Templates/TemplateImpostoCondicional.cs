@@ -1,11 +1,10 @@
-﻿using CursoDesignPatterns.Interfaces;
-using CursoDesignPatterns.Models;
+﻿using CursoDesignPatterns.Models;
 
 namespace CursoDesignPatterns.Templates;
 
-public abstract class TemplateImpostoCondicional : IImposto
+public abstract class TemplateImpostoCondicional : Imposto
 {
-    public double Calcula(Orcamento orcamento)
+    public override double Calcula(Orcamento orcamento)
     {
         return UtilizaMaximaTaxacao(orcamento)
             ? MaximaTaxacao(orcamento)

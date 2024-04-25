@@ -1,5 +1,4 @@
-﻿using CursoDesignPatterns.Interfaces;
-using CursoDesignPatterns.Services;
+﻿using CursoDesignPatterns.Services;
 using System.Text;
 
 namespace CursoDesignPatterns.Models;
@@ -8,20 +7,20 @@ public class Orcamento
 {
     public double ValorTotal { get; private set; }
     public List<Item> Itens { get; private set; }
-    public List<IImposto> Impostos { get; private set; }
-    public double ValorTotalItens { get { return Itens.Sum(i => i.Valor); } }
+    public List<Imposto> Impostos { get; private set; }
+    public double ValorTotalItens => Itens.Sum(i => i.Valor);
 
     public Orcamento()
     {
         Itens = new List<Item>();
-        Impostos = new List<IImposto>();
+        Impostos = new List<Imposto>();
         CalcularValorTotal();
     }
 
     public Orcamento(List<Item> itens)
     {
         Itens = itens;
-        Impostos = new List<IImposto>();
+        Impostos = new List<Imposto>();
         CalcularValorTotal();
     }
 
@@ -31,7 +30,7 @@ public class Orcamento
         CalcularValorTotal();
     }
 
-    public void AddImposto(IImposto imposto)
+    public void AddImposto(Imposto imposto)
     {
         Impostos.Add(imposto);
         CalcularValorTotal();
