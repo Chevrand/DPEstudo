@@ -1,4 +1,4 @@
-﻿using CursoDesignPatterns.Services;
+﻿using CursoDesignPatterns.Descontos;
 using System.Text;
 
 namespace CursoDesignPatterns.Models;
@@ -41,7 +41,14 @@ public class Orcamento
         double valorItens = Itens.Sum(i => i.Valor);
         double valorImpostos = Impostos.Sum(i => i.Calcula(this));
 
-        ValorTotal = valorItens + valorImpostos;
+        ValorTotal = (valorItens + valorImpostos) - CalculaDesconto();
+    }
+
+    private double CalculaDesconto()
+    {
+        var desconto = new DescontoPorValorMaiorOuIgualA500(new DescontoPorCincoItens());
+
+        return desconto.Desconta(this);
     }
 
     public override string ToString()
@@ -55,7 +62,7 @@ public class Orcamento
         Impostos.ForEach(i => sb.AppendLine($"{i.GetType().Name} - {i.Calcula(this).ToString("C")}"));
 
         sb.AppendLine("\n### Desconto ###");
-        sb.AppendLine(CalculadoraDesconto.CalculaDescontoOrcamento(this).ToString("C"));
+        sb.AppendLine(CalculaDesconto().ToString("C"));
 
         sb.AppendLine("\n### Valor Total ###");
         sb.AppendLine(ValorTotal.ToString("C"));
