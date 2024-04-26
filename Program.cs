@@ -16,4 +16,22 @@ orcamento.AddImposto(new Iss());
 orcamento.AddImposto(new Icpp());
 orcamento.AddImposto(new Ikcv());
 
+try
+{
+    orcamento.AplicarDescontoExtra();
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+try
+{
+    orcamento.Aprovar();
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
 Console.WriteLine(orcamento);
