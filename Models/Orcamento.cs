@@ -7,7 +7,7 @@ namespace CursoDesignPatterns.Models;
 
 public class Orcamento
 {
-    public Status StatusOrcamento { get; set; }
+    public Status StatusOrcamento { get; private set; }
     public List<Item> Itens { get; private set; }
     public List<Imposto> Impostos { get; private set; }
     public double ValorTotalItens => Itens.Sum(i => i.Valor);
