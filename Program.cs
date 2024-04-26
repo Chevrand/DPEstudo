@@ -1,20 +1,19 @@
-﻿using CursoDesignPatterns.Impostos;
-using CursoDesignPatterns.Models;
+﻿using CursoDesignPatterns.Builders;
+using CursoDesignPatterns.Impostos;
 
-var orcamento = new Orcamento(new List<Item>
-{
-    new("Shampoo", 12.9),
-    new("Condicionador", 12.9),
-    new("Sabonete", 2.9),
-    new("Lamina de Barbear", 2.99),
-    new("Desodorante", 11.99),
-    new("Ozempic", 899.9),
-});
-
-orcamento.AddImposto(new Icms());
-orcamento.AddImposto(new Iss());
-orcamento.AddImposto(new Icpp());
-orcamento.AddImposto(new Ikcv());
+var builder = new OrcamentoBuilder();
+var orcamento = builder
+    .WithItem(new("Shampoo", 12.9))
+    .WithItem(new("Condicionador", 12.9))
+    .WithItem(new("Sabonete", 2.9))
+    .WithItem(new("Lamina de Barbear", 2.99))
+    .WithItem(new("Desodorante", 11.99))
+    .WithItem(new("Ozempic", 899.9))
+    .WithImposto(new Icms())
+    .WithImposto(new Iss())
+    .WithImposto(new Icpp())
+    .WithImposto(new Ikcv())
+    .Build();
 
 try
 {

@@ -10,10 +10,9 @@ public class Orcamento
     public Status StatusOrcamento { get; private set; }
     public List<Item> Itens { get; private set; }
     public List<Imposto> Impostos { get; private set; }
+    public double DescontoExtra { get; private set; }
     public double ValorTotalItens => Itens.Sum(i => i.Valor);
     public double ValorTotal => CalculaValorTotal();
-
-    public double DescontoExtra { get; private set; }
 
     public Orcamento()
     {
@@ -24,13 +23,13 @@ public class Orcamento
         Impostos = new List<Imposto>();
     }
 
-    public Orcamento(List<Item> itens)
+    public Orcamento(List<Item> itens, List<Imposto> impostos)
     {
         DescontoExtra = 0.0;
 
         StatusOrcamento = Status.EM_ANALISE;
         Itens = itens;
-        Impostos = new List<Imposto>();
+        Impostos = impostos;
     }
 
     public void AddItem(Item item)
